@@ -1,3 +1,4 @@
 cdk init app --language java
 cdk list
 cdk deploy Vpc
+cdk diff
