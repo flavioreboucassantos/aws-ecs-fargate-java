@@ -19,14 +19,14 @@ public class Service01Stack extends Stack {
         ApplicationLoadBalancedFargateService service01 = ApplicationLoadBalancedFargateService.Builder.create(this, "ALB01")
                 .serviceName("service-01")
                 .cluster(cluster)
-                .cpu(512)
-                .memoryLimitMiB(1024)
+                .cpu(256)
+                .memoryLimitMiB(512)
                 .desiredCount(2)
                 .listenerPort(8080)
                 .taskImageOptions(
                         ApplicationLoadBalancedTaskImageOptions.builder()
                                 .containerName("aws_project01")
-                                .image(ContainerImage.fromRegistry("flavioreboucassantos/curso_aws-ecs-fargate-java_aws_project01:1.1.0"))
+                                .image(ContainerImage.fromRegistry("flavioreboucassantos/curso_aws-ecs-fargate-java_aws_project01:1.2.0"))
                                 .containerPort(8080)
                                 .logDriver(LogDriver.awsLogs(AwsLogDriverProps.builder()
                                         .logGroup(LogGroup.Builder.create(this, "Service01LogGroup")
@@ -47,7 +47,7 @@ public class Service01Stack extends Stack {
 
         ScalableTaskCount scalableTaskCount = service01.getService().autoScaleTaskCount(EnableScalingProps.builder()
                 .minCapacity(2)
-                .maxCapacity(4)
+                .maxCapacity(8)
                 .build());
 
         scalableTaskCount.scaleOnCpuUtilization("Service01AutoScaling", CpuUtilizationScalingProps.builder()
