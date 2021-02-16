@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+
 
 @RestController
 @RequestMapping("/api/test")
@@ -20,6 +23,20 @@ public class TestController {
         LOG.info("Test controller - name: {}", name);
 
         return ResponseEntity.ok("Name: " + name);
+    }
+
+    @GetMapping("/myip")
+    public ResponseEntity<?> myIP() {
+        String data = "GET /myip \n";
+        try {
+            data += "Address: " + Inet4Address.getLocalHost().getHostAddress().toString() + "\n";
+            data += "HostName: " + Inet4Address.getLocalHost().getHostName().toString() + "\n\n";
+            LOG.info(data);
+            return ResponseEntity.ok(data);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
