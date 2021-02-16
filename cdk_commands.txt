@@ -2,3 +2,4 @@ cdk init app --language java
 cdk list
 cdk deploy Vpc
 cdk diff
+cdk destroy Vpc Cluster Service01
