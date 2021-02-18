@@ -26,6 +26,9 @@ public class Product {
 	@Column(length = 24, nullable = false)
 	private String model;
 	
+	@Column(length = 12, nullable = true)
+	private String color;
+	
 	@Column(length = 8, nullable = false)
 	private String code;
 	
@@ -53,6 +56,14 @@ public class Product {
 
 	public void setModel(String model) {
 		this.model = model;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public String getCode() {
