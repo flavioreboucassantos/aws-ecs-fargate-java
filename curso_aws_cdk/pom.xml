@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cdk.version>1.89.0</cdk.version>
+        <cdk.version>1.90.0</cdk.version>
         <junit.version>5.7.0</junit.version>
     </properties>
 
@@ -43,7 +43,7 @@
             <artifactId>core</artifactId>
             <version>${cdk.version}</version>
         </dependency>
-
+        
         <dependency>
             <groupId>software.amazon.awscdk</groupId>
             <artifactId>ec2</artifactId>
@@ -67,7 +67,7 @@
             <artifactId>rds</artifactId>
             <version>${cdk.version}</version>
         </dependency>
-
+        
         <dependency>
           <groupId>org.junit.jupiter</groupId>
           <artifactId>junit-jupiter-api</artifactId>

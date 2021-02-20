@@ -32,8 +32,8 @@ public class Service01Stack extends Stack {
 		ApplicationLoadBalancedFargateService service01 = ApplicationLoadBalancedFargateService.Builder.create(this, "ALB01")
 				.serviceName("service-01")
 				.cluster(cluster)
-				.cpu(512)
-				.memoryLimitMiB(1024)
+				.cpu(256)
+				.memoryLimitMiB(512)
 				.desiredCount(2)
 				.listenerPort(8080)
 				.taskImageOptions(
