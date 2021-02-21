@@ -3,4 +3,5 @@ cdk list
 cdk deploy Vpc
 cdk diff
 cdk destroy Vpc Cluster Service01
-cdk deploy --parameters Rds:databasePassword=matilde123456 Rds Service01
+cdk deploy --parameters Rds:databasePassword=matilde123456 Vpc Rds Sns Service01 Service02
+cdk destroy Vpc Rds Sns Service01 Service02
