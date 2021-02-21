@@ -28,7 +28,7 @@ sourceCompatibility = '15'
 
 bootJar {
 	baseName = 'curso_aws-ecs-fargate-java_aws_project02'
-	version = '1.0.0'
+	version = '1.2.0'
 	mainClassName = "com.flavioreboucassantos.aws_project02.AwsProject02Application"
 }
 
@@ -50,9 +50,16 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sqs
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-sqs', version: '1.11.959'
+	// https://mvnrepository.com/artifact/org.springframework/spring-jms
+	implementation group: 'org.springframework', name: 'spring-jms', version: '5.3.4'
+	// https://mvnrepository.com/artifact/com.amazonaws/amazon-sqs-java-messaging-lib
+	implementation group: 'com.amazonaws', name: 'amazon-sqs-java-messaging-lib', version: '1.0.8'	
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
