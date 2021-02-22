@@ -1,1 +1,0 @@
-| filter @message like /Product event received/

@@ -16,6 +16,9 @@ public class ProductEventLog {
 	@Id
 	private ProductEventKey productEventKey;
 	
+	@DynamoDBAttribute(attributeName = "messageId")
+	private String messageId;
+	
 	@DynamoDBTypeConvertedEnum
 	@DynamoDBAttribute(attributeName = "eventType")
 	private EventType eventType;
@@ -54,6 +57,14 @@ public class ProductEventLog {
 			productEventKey = new ProductEventKey();
 		}
 		productEventKey.setSk(sk);
+	}	
+
+	public String getMessageId() {
+		return messageId;
+	}
+
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
 	}
 
 	public EventType getEventType() {

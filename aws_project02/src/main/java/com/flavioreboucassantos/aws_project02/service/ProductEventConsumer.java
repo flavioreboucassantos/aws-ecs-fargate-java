@@ -2,11 +2,11 @@ package com.flavioreboucassantos.aws_project02.service;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.Instant;
 
 import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
-import org.joda.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,22 +49,24 @@ public class ProductEventConsumer {
 				envelope.getEventType(),
 				productEvent.getProductId());
 		
-		ProductEventLog productEventLog = buildProductEventLog(envelope, productEvent);
+		ProductEventLog productEventLog = buildProductEventLog(snsMessage, envelope, productEvent);
 		productEventLogRepository.save(productEventLog);
 	}
 	
-	private ProductEventLog buildProductEventLog(Envelope envelope, ProductEvent productEvent) {
-		long timestamp = Instant.now().getMillis();
+	private ProductEventLog buildProductEventLog(SnsMessage snsMessage, Envelope envelope, ProductEvent productEvent) {
+		long timestamp = Instant.now().toEpochMilli();
+		
 		ProductEventLog productEventLog = new ProductEventLog();
 		productEventLog.setPk(productEvent.getCode());
 		productEventLog.setSk(envelope.getEventType() + "_" + timestamp);
+		
+		productEventLog.setMessageId(snsMessage.getMessageId());
 		productEventLog.setEventType(envelope.getEventType());
 		productEventLog.setProductId(productEvent.getProductId());
 		productEventLog.setUsername(productEvent.getUsername());
-		productEventLog.setTimestamp(timestamp);
-		productEventLog.setTtl(
-				Instant.now().plus(Duration.ofMinutes(10).toMillis())
-				.getMillis());
+		productEventLog.setTimestamp(timestamp);		
+		productEventLog.setTtl(Instant.now().plus(
+                Duration.ofMinutes(10)).getEpochSecond());
 		
 		return productEventLog;
 	}
