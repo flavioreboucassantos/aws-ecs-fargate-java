@@ -1,8 +1,6 @@
 cdk init app --language java
 cdk list
-cdk deploy Vpc
 cdk diff
-cdk destroy Vpc Cluster Service01
-cdk deploy --parameters Rds:databasePassword=matilde123456 Vpc Rds Sns Service01 Service02
+cdk deploy --parameters Rds:databasePassword=matilde123456 Vpc Cluster Rds Sns Service01 Ddb Service02
 cdk deploy --all --parameters Rds:databasePassword=matilde123456
-cdk destroy Vpc Rds Sns Service01 Service02
+cdk destroy Vpc Cluster Rds Sns Service01 Ddb Service02

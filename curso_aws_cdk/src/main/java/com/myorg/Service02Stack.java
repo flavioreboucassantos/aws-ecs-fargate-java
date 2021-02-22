@@ -69,7 +69,7 @@ public class Service02Stack extends Stack {
 						ApplicationLoadBalancedTaskImageOptions.builder()
 								.containerName("aws_project02")
 								.image(ContainerImage.fromRegistry(
-										"flavioreboucassantos/curso_aws-ecs-fargate-java_aws_project02:1.3.0"))
+										"flavioreboucassantos/curso_aws-ecs-fargate-java_aws_project02:1.5.0"))
 								.containerPort(9090)
 								.logDriver(LogDriver.awsLogs(AwsLogDriverProps.builder()
 										.logGroup(LogGroup.Builder.create(this, "Service02LogGroup")

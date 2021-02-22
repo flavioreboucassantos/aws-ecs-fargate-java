@@ -1,13 +1,16 @@
 package com.myorg;
 
 import software.amazon.awscdk.core.Construct;
+import software.amazon.awscdk.core.Duration;
 import software.amazon.awscdk.core.RemovalPolicy;
 import software.amazon.awscdk.core.Stack;
 import software.amazon.awscdk.core.StackProps;
 import software.amazon.awscdk.services.dynamodb.Attribute;
 import software.amazon.awscdk.services.dynamodb.AttributeType;
 import software.amazon.awscdk.services.dynamodb.BillingMode;
+import software.amazon.awscdk.services.dynamodb.EnableScalingProps;
 import software.amazon.awscdk.services.dynamodb.Table;
+import software.amazon.awscdk.services.dynamodb.UtilizationScalingProps;
 
 public class DdbStack extends Stack {
 
@@ -34,8 +37,28 @@ public class DdbStack extends Stack {
 						.type(AttributeType.STRING)
 						.build())
 				.timeToLiveAttribute("ttl")
-				.removalPolicy(RemovalPolicy.DESTROY)				
+				.removalPolicy(RemovalPolicy.DESTROY)
 				.build();
+
+		productEventsDdb.autoScaleReadCapacity(EnableScalingProps.builder()
+				.minCapacity(1)
+				.maxCapacity(4)
+				.build())
+				.scaleOnUtilization(UtilizationScalingProps.builder()
+						.targetUtilizationPercent(50)
+						.scaleInCooldown(Duration.seconds(30))
+						.scaleOutCooldown(Duration.seconds(30))
+						.build());
+
+		productEventsDdb.autoScaleWriteCapacity(EnableScalingProps.builder()
+				.minCapacity(1)
+				.maxCapacity(4)
+				.build())
+				.scaleOnUtilization(UtilizationScalingProps.builder()
+						.targetUtilizationPercent(50)
+						.scaleInCooldown(Duration.seconds(30))
+						.scaleOutCooldown(Duration.seconds(30))
+						.build());
 	}
 
 	public Table getProductEventsDdb() {
