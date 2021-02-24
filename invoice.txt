@@ -1,0 +1,7 @@
+{
+	"invoiceNumber": "ABC-123",
+	"customerName": "Matilde",
+	"totalValue": 1250.00,
+	"productId": 1,
+	"quantity": 2
+}

@@ -2,5 +2,5 @@ cdk init app --language java
 cdk list
 cdk diff
 cdk deploy --parameters Rds:databasePassword=matilde123456 Vpc Cluster Rds Sns InvoiceApp Service01 Ddb Service02
-cdk deploy --all --parameters Rds:databasePassword=matilde123456
+cdk deploy --all --require-approval never --parameters Rds:databasePassword=matilde123456
 cdk destroy Vpc Cluster Rds Sns InvoiceApp Service01 Ddb Service02

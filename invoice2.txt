@@ -1,0 +1,7 @@
+{
+	"invoiceNumber": "ABC-124",
+	"customerName": "Doralice",
+	"totalValue": 1050.00,
+	"productId": 3,
+	"quantity": 1
+}
