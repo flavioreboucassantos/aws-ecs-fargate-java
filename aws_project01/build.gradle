@@ -28,7 +28,7 @@ sourceCompatibility = '15'
 
 bootJar {
 	baseName = 'curso_aws-ecs-fargate-java_aws_project01'
-	version = '1.7.0'
+	version = '1.8.0'
 	mainClassName = "com.flavioreboucassantos.aws_project01.AwsProject01Application"
 }
 
